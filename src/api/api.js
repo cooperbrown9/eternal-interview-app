@@ -1,11 +1,14 @@
 import axios from "axios";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 let BASE = "http://localhost:8000/api";
 
 // console.log(process.env.NODE_ENV)
-// if(process.env.NODE_ENV === 'production') {
-//   BASE = 'https://kyc-api-saudi.herokuapp.com/api'
-// }
+if(process.env.NODE_ENV === 'production') {
+  BASE = process.env.REACT_APP_API;
+}
 
 const http = axios.create({ withCredentials: true, baseURL: BASE });
 
