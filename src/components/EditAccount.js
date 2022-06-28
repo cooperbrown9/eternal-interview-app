@@ -60,7 +60,7 @@ const EditAccount = ({ context, match }) => {
         </div>
         <div>
           <p className='label'>Birthday</p>
-          <StatefulCalendar value={new Date(user?.birthday)} initialState={{value: [user?.birthday]}} onChange={({ date }) => setUser({ ...user, birthday: date })} />
+          <StatefulCalendar value={new Date(user?.birthday)} onChange={({ date }) => setUser({ ...user, birthday: date })} />
         </div>
       </div>
     </div>
