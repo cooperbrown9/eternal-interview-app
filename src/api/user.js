@@ -18,7 +18,6 @@ export function update(user) {
 }
 
 export function listFollow(userId, type) {
-    console.log('listfollow', userId)
   return http.get(`${FOLLOW(userId)}?type=${type}`);
 }
 

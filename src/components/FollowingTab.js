@@ -10,9 +10,7 @@ const FollowingTab = ({ userId }) => {
 
   useEffect(() => {
     async function getUsersFollowing() {
-        console.log('FOLLOWINGID', userId)
         const { data: _following } = await listFollow(userId, 'following')
-        console.log(_following)
         setFollowing(_following)
     }
     getUsersFollowing();
@@ -20,6 +18,14 @@ const FollowingTab = ({ userId }) => {
 
   function onViewProfile(userId) {
     router.push('/profile/' + userId)
+  }
+
+  if(following.length === 0) {
+    return(
+      <div>
+        <p style={{color: 'white'}}>You aren't following anyone, click the Search Tab to follow people</p>
+      </div>
+    )
   }
 
   return (

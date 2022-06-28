@@ -11,7 +11,6 @@ const FollowerTab = ({ userId }) => {
   useEffect(() => {
     async function getFollowers() {
         const { data: _followers } = await listFollow(userId, 'followers')
-        console.log(_followers)
         setFollowers(_followers)
     }
     getFollowers();
@@ -21,6 +20,14 @@ const FollowerTab = ({ userId }) => {
     router.push('/profile/' + userId)
   }
 
+  if(followers.length === 0) {
+    return(
+      <div>
+        <p style={{color: 'white'}}>You don't have any followers, click the Search Tab to follow people</p>
+      </div>
+    )
+  }
+  
   return (
     <div className='card'>
       {followers.map((f, i) => (

@@ -36,8 +36,6 @@ export default class Provider extends Component {
       localStorage.setItem("user", JSON.stringify(user));
 
       await this.setState({ user, isAuthenticated: true, isReady: true });
-
-      console.log(user);
     } catch (e) {
       console.log(e);
     } finally {
@@ -51,12 +49,23 @@ export default class Provider extends Component {
     await this.setState({ user, isAuthenticated: true, isReady: true });
   }
 
+  async refreshUser() {
+    try {
+      const { data: user } = await authenticate();
+      localStorage.setItem("user", JSON.stringify(user));
+      await this.setState({ user })
+    } catch(e) {
+      console.log(e)
+    }
+  }
+
   render() {
     const value = {
       isAuthenticated: this.state.isAuthenticated,
       user: this.state.user,
 
-      setUser: (user) => this.setUser(user)
+      setUser: (user) => this.setUser(user),
+      refreshUser: () => this.refreshUser()
     };
 
     /**

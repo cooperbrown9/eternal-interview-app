@@ -1,7 +1,7 @@
 import axios from "axios";
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 
-dotenv.config();
+// dotenv.config();
 
 let BASE = "http://localhost:8000/api";
 

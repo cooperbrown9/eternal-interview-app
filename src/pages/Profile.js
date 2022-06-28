@@ -93,7 +93,7 @@ class Profile extends Component {
           }}
         >
           <p class='text-sm' style={{ color: "white" }} onClick={() => this.setState({ isAccountModalOpen: !isAccountModalOpen })}>
-            John Apple
+            {user.name}
           </p>
         </div>
         <div className='flex flex-row justify-between mb-2'>

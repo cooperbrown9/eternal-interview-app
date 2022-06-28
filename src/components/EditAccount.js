@@ -5,26 +5,27 @@ import { StatefulCalendar } from "baseui/datepicker";
 import { update } from "../api/user";
 
 const EditAccount = ({ context, match }) => {
-    const { user: _user } = context;
-    const router = useHistory();
+  const { user: _user } = context;
+  const router = useHistory();
 
-    const [user, setUser] = useState(_user);
-    const [isLoading, setIsLoading] = useState(false);
-console.log(match)
+  const [user, setUser] = useState(_user);
+  const [isLoading, setIsLoading] = useState(false);
+
   async function onUpdate() {
-    setIsLoading(true)
+    setIsLoading(true);
 
     try {
-        await update(user)
-    } catch(e) {
-        console.log(e)
+      await update(user);
+      await context.refreshUser()
+    } catch (e) {
+      console.log(e);
     } finally {
-        setIsLoading(false)
+      setIsLoading(false);
     }
   }
 
   function onBack() {
-    router.push('/profile/' + match.params.userId)
+    router.push("/profile/" + match.params.userId);
   }
 
   return (
@@ -42,8 +43,10 @@ console.log(match)
         </p>
 
         <div className='flex flex-row'>
-          <p style={styles.actionButton} onClick={onBack}>Back</p>
-          <p className='ml-2 ' style={{ ...styles.actionButton, backgroundColor: 'rgb(200,0,200)'}} onClick={onUpdate}>
+          <p style={styles.actionButton} onClick={onBack}>
+            Back
+          </p>
+          <p className='ml-2 ' style={{ ...styles.actionButton, backgroundColor: "rgb(200,0,200)", opacity: isLoading ? 0.5 : 1 }} onClick={onUpdate}>
             Save
           </p>
         </div>
@@ -57,7 +60,7 @@ console.log(match)
         </div>
         <div>
           <p className='label'>Birthday</p>
-          <StatefulCalendar value={user?.birthday} onChange={({ date }) => console.log(date)} />
+          <StatefulCalendar value={new Date(user?.birthday)} initialState={{value: [user.birthday]}} onChange={({ date }) => setUser({ ...user, birthday: date })} />
         </div>
       </div>
     </div>
@@ -67,5 +70,5 @@ console.log(match)
 export { EditAccount };
 
 const styles = {
-  actionButton: { color: "white", backgroundColor: "rgb(100,100,100)", padding: 12, borderRadius: 24, cursor: 'pointer' },
+  actionButton: { color: "white", backgroundColor: "rgb(100,100,100)", padding: 12, borderRadius: 24, cursor: "pointer" },
 };
