@@ -23,7 +23,7 @@ export default class Provider extends Component {
 
         /**
          * If no user is saved locally then they havent logged in before
-         * We need the locally saved user to 
+         * This is a workaround for checking for cookies right now (not something I'd do in prod)
          */
       let _user = localStorage.getItem("user");
       if (!_user) {
@@ -32,7 +32,7 @@ export default class Provider extends Component {
 
       _user = JSON.parse(_user);
       const { data: user } = await authenticate();
-      console.log('USER', user)
+
       localStorage.setItem("user", JSON.stringify(user));
 
       await this.setState({ user, isAuthenticated: true, isReady: true });

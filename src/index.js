@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 
 import { Client as Styletron } from "styletron-engine-atomic";
 import { Provider as StyletronProvider } from "styletron-react";
-import { LightTheme, BaseProvider } from "baseui";
+import { LightTheme, DarkTheme, BaseProvider } from "baseui";
 
 const engine = new Styletron();
 
@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <StyletronProvider value={engine}>
-      <BaseProvider theme={LightTheme}>
+      <BaseProvider theme={DarkTheme}>
         <App />
       </BaseProvider>
     </StyletronProvider>

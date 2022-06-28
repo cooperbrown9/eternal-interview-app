@@ -10,6 +10,13 @@ export function get(userId) {
   return http.get(`${USER}/${userId}`);
 }
 
+export function update(user) {
+  const data = {
+    user
+  }
+  return http.post(`${USER}/${user._id}`, data);
+}
+
 export function listFollow(userId, type) {
     console.log('listfollow', userId)
   return http.get(`${FOLLOW(userId)}?type=${type}`);

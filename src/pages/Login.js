@@ -15,12 +15,12 @@ const Login = ({ context }) => {
     try {
         const { data: user } = await login(email, pw)
         await context.setUser(user)
-        console.log('USER LOGIN', user)
         router.push('/profile/' + user._id)
     } catch(e) {
         console.log('BRUH', e)
     }
   }
+
 
   return (
     <div className='page p-32'>
